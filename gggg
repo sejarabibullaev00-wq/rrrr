@@ -1,0 +1,33 @@
+
+
+IF OBJECT_ID('dbo.Employees', 'U') IS NOT NULL
+    DROP TABLE dbo.Employees;
+
+CREATE TABLE dbo.Employees (
+    EmployeeID INT IDENTITY(1,1) NOT NULL PRIMARY KEY, -- Автоинкремент, первичный ключ
+    FirstName NVARCHAR(50) NOT NULL,                   -- Имя (обязательное поле)
+    LastName NVARCHAR(50) NOT NULL,                    -- Фамилия (обязательное поле)
+    Position NVARCHAR(100) NULL,                       -- Должность (может быть NULL)
+    Salary DECIMAL(18,2) NOT NULL,                     -- Зарплата (точное число)
+    HireDate DATE NOT NULL                             -- Дата найма
+);
+
+PRINT 'Таблица dbo.Employees успешно создана.';
+GO
+
+
+INSERT INTO dbo.Employees (FirstName, LastName, Position, Salary, HireDate)
+VALUES 
+    (N'Иван', N'Иванов', N'Разработчик', 80000.00, '2022-01-15'),
+    (N'Петр', N'Петров', N'Аналитик', 75000.50, '2021-11-01'),
+    (N'Анна', N'Сидорова', N'Менеджер', 90000.00, '2020-05-20'),
+    (N'Елена', N'Кузнецова', N'Тестировщик', 65000.00, '2023-03-10');
+
+PRINT 'Данные успешно добавлены в таблицу dbo.Employees.';
+GO
+
+-- Проверка результата
+SELECT * FROM dbo.Employees;
+GO
+
+PRINT 'Проект "Таблицы" успешно выполнен!';
